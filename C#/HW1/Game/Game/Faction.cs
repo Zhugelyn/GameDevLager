@@ -8,8 +8,8 @@ namespace Game
 {
     public enum Faction
     {
-        light,
-        dark,
-        gray
+        Light,
+        Dark,
+        Gray
     }
 }

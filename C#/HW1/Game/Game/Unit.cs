@@ -23,25 +23,25 @@ namespace Game
 
         public float CauseDamage(Unit defendingUnit)
         {
-            return СalculateTotalIncomingDamage(this, defendingUnit);
+            return СalculateTotalIncomingDamage(defendingUnit);
         }
 
-        private float СalculateTotalIncomingDamage(Unit attackingUnit, Unit defendingUnit)
+        private float СalculateTotalIncomingDamage(Unit defendingUnit)
         {
-            var damage = CalculateDamage(attackingUnit.BaseDamage, attackingUnit.IsBerserk) *
-                DetermineFactionBonusDamageRatio(attackingUnit.Faction, defendingUnit.Faction);
+            var damage = CalculateDamage(BaseDamage, IsBerserk) *
+                DetermineFactionBonusDamageRatio(Faction, defendingUnit.Faction);
             var protection = CalculateProtection(defendingUnit.BasicProtection, defendingUnit.IsBerserk);
 
             return damage * protection;
         }
 
-        private float DetermineFactionBonusDamageRatio(Faction factionAttackingUnit, Faction defendingUnitFaction)
+        private float DetermineFactionBonusDamageRatio(Faction attackingUnitFaction, Faction defendingUnitFaction)
         {
-            if (factionAttackingUnit == Faction.gray)
-                return 0.00f;
-            if (factionAttackingUnit == defendingUnitFaction)
+            if (attackingUnitFaction == Faction.Gray || defendingUnitFaction == Faction.Gray)
+                return 1;
+            if (attackingUnitFaction == defendingUnitFaction)
                 return 0.5f;
-            if (factionAttackingUnit != defendingUnitFaction)
+            if (attackingUnitFaction != defendingUnitFaction)
                 return 2;
 
             return 0.00f;

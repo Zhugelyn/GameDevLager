@@ -10,8 +10,8 @@ namespace Game
     {
         static void Main(string[] args)
         {
-            var attackingUnit = new Unit(50, 80, Faction.dark, true);
-            var defendingUnit = new Unit(40, 50, Faction.light, false);
+            var attackingUnit = new Unit(50, 80, Faction.Dark, true);
+            var defendingUnit = new Unit(40, 50, Faction.Light, false);
 
             var damageDone = attackingUnit.CauseDamage(defendingUnit);
 
